@@ -13,6 +13,9 @@ export default class EnumItem {
     this.key = key;
     this.value = value;
 
+    this.val = this.value.v;
+    this.des = this.value.d;
+
     this._options = options;
     this._options.ignoreCase = this._options.ignoreCase || false;
   }

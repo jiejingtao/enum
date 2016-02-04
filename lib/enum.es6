@@ -35,6 +35,7 @@ export default class Enum {
     this._options.freez = this._options.freez || false;
 
     this.enums = [];
+    this.choices = {};
 
     if (map.length) {
       this._enumLastIndex = map.length;
@@ -50,6 +51,7 @@ export default class Enum {
       guardReservedKeys(this._options.name, member);
       this[member] = new EnumItem(member, map[member], { ignoreCase: this._options.ignoreCase });
       this.enums.push(this[member]);
+      this.choices[member] = this[member].des || this[member];
     }
     this._enumMap = map;
 
@@ -82,6 +84,14 @@ export default class Enum {
     if (this._options.freez) {
       this.freezeEnums(); //this will make instances of Enum non-extensible
     }
+  }
+
+  getPairs(k, v){
+    var pairs = {}
+    for(var i in this.enums){
+      pairs[this.enums[i][k]] = this.enums[i][v];
+    };
+    return pairs;
   }
 
   /**
