@@ -87,13 +87,20 @@ export default class Enum {
   }
 
   getPairs(k, v){
-    var pairs = {}
-    for(var i in this.enums){
+    var pairs = {};
+    for(let i in this.enums){
       pairs[this.enums[i][k]] = this.enums[i][v];
     };
     return pairs;
   }
 
+  getList(k){
+    var vList = [];
+    for(let i in this.enums){
+      vList.push(this.enums[i][k]);
+    }
+    return vList;
+  }
   /**
    * Returns the appropriate EnumItem key.
    * @param  {EnumItem || String || Number} key The object to get with.
